@@ -1,0 +1,7 @@
+<app-my-counter-result [count]="count$"></app-my-counter-result>
+<mat-divider></mat-divider>
+<app-my-counter-actions
+  (emitDecrement)="handleDecrement()"
+  (emitIncrement)="handleIncrement()"
+  (emitReset)="handleReset()"
+></app-my-counter-actions>
