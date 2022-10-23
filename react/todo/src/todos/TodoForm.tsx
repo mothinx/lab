@@ -19,14 +19,18 @@ const TodoForm: React.FC<Props> = ({onSubmit}) => {
 
     function handleSubmit(event: any) {
         event.preventDefault();
+        setLabel('')
         onSubmit(label, date);
     }
+
+    const canAddTodo = label.length > 0;
 
     return (
         <div className="form">
             <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleTitleChange} placeholder="Add a new task..."></input>
+                <input type="text" onChange={handleTitleChange} placeholder="Add a new task..." value={label}></input>
                 <input type="date" onSelect={handleDateChange}></input>
+                <button type="submit" disabled={!canAddTodo}>Add Todo</button>
             </form>
         </div>
     )
