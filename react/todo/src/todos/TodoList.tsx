@@ -1,38 +1,9 @@
 import React, {useState} from "react";
-import {Todo} from "./Todo";
+import {TodoItem} from "./TodoItem";
 import TodoForm from "./TodoForm";
 
-const initialTodos: Todo[] = [
-    {
-        id: 1,
-        title: "Réparer la lampe de chevet",
-        done: false
-    },
-    {
-        id: 2,
-        title: "Trier le linge",
-        done: false
-    },
-    {
-        id: 3,
-        title: "Inscription au sport",
-        done: false
-    },
-    {
-        id: 4,
-        title: "Relire rapport de stage du stagiaire",
-        due_date: new Date(2022, 10, 22),
-        done: true
-    },
-    {
-        id: 5,
-        title: "Une tache sans projet",
-        done: true
-    },
-]
-
 const TodoList: React.FC = () => {
-    const [todos, setTodos] = useState(initialTodos);
+    const [todos, setTodos] = useState([] as Todo[]);
 
     function handleChange(id: number) {
         const todosCopy = [...todos];
@@ -56,14 +27,25 @@ const TodoList: React.FC = () => {
         setTodos(todosCopy);
     }
 
+    function handleDelete(id: number) {
+        const todosCopy = [...todos];
+        const newTodos = todosCopy.filter(todo => todo.id !== id);
+        setTodos(newTodos);
+    }
+
     return (
         <div className="app">
             <h1>TODO LIST</h1>
             <TodoForm onSubmit={handleSubmit}/>
             <div className="todos">
                 {todos.map(todo => {
-                    return <Todo key={todo.id} todo={todo}
-                                 onClick={handleChange}/>
+                    return (
+                        <TodoItem key={todo.id}
+                                  todo={todo}
+                                  onClickChange={handleChange}
+                                  onClickDelete={handleDelete}
+                        />
+                    )
                 })}
             </div>
         </div>

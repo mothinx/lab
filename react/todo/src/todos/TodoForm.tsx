@@ -4,7 +4,7 @@ interface Props {
     onSubmit: (title: string, date: string) => void;
 }
 
-const TodoForm: React.FC<Props> = (props) => {
+const TodoForm: React.FC<Props> = ({onSubmit}) => {
 
     const [label, setLabel] = useState('');
     const [date, setDate] = useState('');
@@ -19,7 +19,7 @@ const TodoForm: React.FC<Props> = (props) => {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        props.onSubmit(label, date);
+        onSubmit(label, date);
     }
 
     return (
