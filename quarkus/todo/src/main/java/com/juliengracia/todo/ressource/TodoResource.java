@@ -1,17 +1,17 @@
 package com.juliengracia.todo.ressource;
 
 import com.juliengracia.todo.dto.TodoDto;
-import com.juliengracia.todo.model.Todo;
 import com.juliengracia.todo.service.TodoService;
 
 import javax.inject.Inject;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.List;
 
 @Path("/todo")
@@ -26,5 +26,11 @@ public class TodoResource {
     public Response getAll() {
         List<TodoDto> todos = todoService.getAll();
         return Response.ok(todos).build();
+    }
+
+    @POST
+    public Response add(TodoDto dto) {
+        todoService.add(dto);
+        return Response.created(URI.create("/todo/")).build();
     }
 }

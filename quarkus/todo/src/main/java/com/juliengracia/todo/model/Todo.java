@@ -2,12 +2,14 @@ package com.juliengracia.todo.model;
 
 
 import com.juliengracia.todo.dto.TodoDto;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Setter
 public class Todo {
     @Id
     @GeneratedValue

@@ -6,6 +6,7 @@ import com.juliengracia.todo.model.Todo;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
@@ -19,5 +20,11 @@ public class TodoService {
                 .stream()
                 .map(Todo::mapToTodoDto)
                 .toList();
+    }
+
+    @Transactional
+    public void add(TodoDto dto) {
+        Todo todo = dto.toTodo();
+        todoDao.persist(todo);
     }
 }
