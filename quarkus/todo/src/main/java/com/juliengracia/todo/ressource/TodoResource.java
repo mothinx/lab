@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -32,5 +33,12 @@ public class TodoResource {
     public Response add(TodoDto dto) {
         todoService.add(dto);
         return Response.created(URI.create("/todo/")).build();
+    }
+
+    @Path("{id}")
+    @GET
+    public Response getById(@PathParam("id") Long id) {
+        TodoDto todo = todoService.getById(id);
+        return Response.ok(todo).build();
     }
 }
