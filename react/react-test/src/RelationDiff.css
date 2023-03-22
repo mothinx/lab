@@ -1,0 +1,25 @@
+.relation-diff {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .relation-diff th,
+  .relation-diff td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .relation-diff th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .old-value {
+    text-decoration: line-through;
+    color: red;
+  }
+  
+  .new-value {
+    color: green;
+    margin-left: 8px;
+  }
